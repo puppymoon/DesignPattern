@@ -8,20 +8,24 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class XmlAdaptee implements Adaptee {
 
-	public XmlAdaptee() {
+	private String xmlStr;
+
+	public XmlAdaptee(String xmlStr) {
+		this.xmlStr = xmlStr;
 	}
 
 	@Override
-	public void toJsonString(String xmlStr) {
+	public String toJsonString() {
 		try {
 			XmlMapper xmlMapper = new XmlMapper();
 			JsonNode node = xmlMapper.readTree(xmlStr.getBytes());
 			ObjectMapper jsonMapper = new ObjectMapper();
 			String json = jsonMapper.writeValueAsString(node);
-			System.out.println(json);
+			return json;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "";
 	}
 
 }

@@ -1,6 +1,6 @@
 package idv.moontea.designpattern.structural.adapter;
 
-public class Adapter implements Printer {
+public class Adapter extends Printer {
 
 	private Adaptee adaptee;
 
@@ -9,9 +9,8 @@ public class Adapter implements Printer {
 	}
 
 	@Override
-	public void print(String data) {
-		System.out.println("使用Adapter,原始字串: " + data);
-		adaptee.toJsonString(data);
+	public void work() {
+		print(adaptee.toJsonString());
 	}
 
 }
